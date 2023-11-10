@@ -1,7 +1,9 @@
-export default function Home() {
+import { Calculator } from '@/components/Calculator';
+
+export default function Calculadora() {
   return (
     <main>
-      <div>Ola mundo</div>
+      <Calculator />
     </main>
   );
 }
