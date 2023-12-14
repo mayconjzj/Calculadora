@@ -1,22 +1,39 @@
 import { useState } from 'react';
 
 export const useCalculator = () => {
-  const [num, setNum] = useState(0);
+  const [num, setNum] = useState<number>(0);
+  const [oldNum, setOldNum] = useState<number>(0);
+  const [operator, setOperator] = useState<string>('');
 
-  const inputNum = (e: number) => {
-    setNum(Number(num.toString() + e.toString()));
+  const inputNum = (number: number) => {
+    setNum(Number(num.toString() + number.toString()));
   };
 
   const clear = () => {
     setNum(0);
+    setOldNum(0);
+    setOperator('');
   };
 
   const percentage = () => {
     setNum(num / 100);
   };
 
-  const operaterHandler = () => {
+  const changeSing = () => {
     setNum(num * -1);
+  };
+
+  const calculate = () => {
+    operator === '/' && setNum(oldNum / num);
+    operator === '*' && setNum(oldNum * num);
+    operator === '-' && setNum(oldNum - num);
+    operator === '+' && setNum(oldNum + num);
+  };
+
+  const operaterHandler = (value: string) => {
+    setOperator(value);
+    setOldNum(num);
+    setNum(0);
   };
 
   return {
@@ -24,6 +41,8 @@ export const useCalculator = () => {
     inputNum,
     clear,
     percentage,
+    changeSing,
+    calculate,
     operaterHandler
   };
 };
