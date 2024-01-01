@@ -1,14 +1,8 @@
+import { ButtonProps } from '@/models';
+
 import * as S from './styles';
 
-export const Button = ({
-  onClick,
-  styles,
-  children
-}: {
-  children: React.ReactNode;
-  onClick?: () => void;
-  styles?: string;
-}) => {
+export const Button = ({ onClick, styles, children }: ButtonProps) => {
   return (
     <S.Button onClick={onClick} className={styles}>
       {children}
